@@ -2,13 +2,12 @@
 import "../styles/global.css";
 
 const SITE = {
-  name: "Comprehensive Medical & Research Center (CMRC)",
-  city: "Plantation, FL",
   phoneDisplay: "+1 (954) 368 3529",
   phoneTel: "+19543683529",
   addressLine1: "4101 NW 3rd Ct, Suite 11",
   addressLine2: "Plantation, FL 33317",
-  bookingUrl: "https://www.zocdoc.com/practice/comprehensive-medical-and-research-center-17467?isNewPatient=false&lock=true&referrerType=widget",
+  bookingUrl:
+    "https://www.zocdoc.com/practice/comprehensive-medical-and-research-center-17467?isNewPatient=false&lock=true&referrerType=widget",
   email: "admin@compmedical.net",
 };
 
@@ -19,7 +18,7 @@ const SEO = {
 };
 ---
 
-
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -33,8 +32,6 @@ const SEO = {
     <meta property="og:title" content={SEO.title} />
     <meta property="og:description" content={SEO.description} />
     <meta property="og:type" content="website" />
-
-    <meta name="robots" content="index,follow" />
   </head>
 
   <body>
@@ -52,7 +49,7 @@ const SEO = {
           <nav class="navLinks" aria-label="Primary">
             <a href="#services">Services</a>
             <a href="#insurance">Insurance</a>
-            <a href="#pricing">Self-Pay</a>
+            <a href="#selfpay">Self-Pay</a>
             <a href="#contact">Contact</a>
           </nav>
 
@@ -75,7 +72,7 @@ const SEO = {
                 <span>Over 100 5-star reviews</span>
               </div>
 
-              <h1 class="h1">The best medical services in {SITE.city}</h1>
+              <h1 class="h1">The best medical services in Plantation, FL</h1>
 
               <p class="p">
                 Healthcare should be personalized, accessible, and easy to start.
@@ -114,7 +111,10 @@ const SEO = {
               </div>
 
               <div class="pills" aria-label="Quick features">
-                {HIGHLIGHTS.map((h) => <span class="pill">{h}</span>)}
+                <span class="pill">Primary Care</span>
+                <span class="pill">Clinical Research</span>
+                <span class="pill">Aesthetics</span>
+                <span class="pill">Self-pay accepted</span>
               </div>
             </div>
 
@@ -140,18 +140,20 @@ const SEO = {
             </div>
 
             <div class="grid">
-              {SERVICES.map((s) => (
-                <article class="card" style="padding: 18px;">
-                  <h3 style="margin: 0 0 8px; letter-spacing: -0.01em;">{s.title}</h3>
-                  <p class="p">{s.desc}</p>
-                  <div class="btnRow" style="margin-top: 14px;">
-                    <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
-                      Book
-                    </a>
-                    <a class="btn" href="#contact">Questions?</a>
-                  </div>
-                </article>
-              ))}
+              <article class="card" style="padding: 18px;">
+                <h3 style="margin: 0 0 8px;">Primary Care</h3>
+                <p class="p">Personalized primary care focused on prevention, chronic condition management, and everyday health needs.</p>
+              </article>
+
+              <article class="card" style="padding: 18px;">
+                <h3 style="margin: 0 0 8px;">Pharmaceutical Research</h3>
+                <p class="p">Clinical research and trials supporting the development of new medicines and better patient outcomes.</p>
+              </article>
+
+              <article class="card" style="padding: 18px;">
+                <h3 style="margin: 0 0 8px;">Aesthetics</h3>
+                <p class="p">Aesthetic treatments guided by trained professionals to help you choose what’s right for your goals.</p>
+              </article>
             </div>
           </div>
         </div>
@@ -164,45 +166,27 @@ const SEO = {
             <p class="p">Most major plans are accepted. Not sure about your plan? Call us and we’ll help.</p>
 
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 16px;">
-              {INSURANCES.map((i) => (
-                <div class="card" style="padding: 14px; background: rgba(255,255,255,0.04);">
-                  <strong>{i}</strong>
-                  <div class="small" style="margin-top: 6px;">Check eligibility when booking</div>
-                </div>
-              ))}
+              <div class="card" style="padding: 14px; background: rgba(255,255,255,0.04);"><strong>Aetna</strong></div>
+              <div class="card" style="padding: 14px; background: rgba(255,255,255,0.04);"><strong>Cigna</strong></div>
+              <div class="card" style="padding: 14px; background: rgba(255,255,255,0.04);"><strong>United Healthcare</strong></div>
+              <div class="card" style="padding: 14px; background: rgba(255,255,255,0.04);"><strong>Multiplan</strong></div>
             </div>
 
             <div class="btnRow">
               <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
                 Book with Insurance
               </a>
-              <a class="btn" href="#pricing">See Self-Pay</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="pricing" class="section">
+      <section id="selfpay" class="section">
         <div class="container">
           <div class="split">
             <div>
               <h2 class="h2">No insurance? We can help</h2>
-              <p class="p">
-                Affordable self-pay pricing for common visits, wellness checks, and women’s wellness care.
-              </p>
-
-              <ul class="list" style="margin-top: 14px;">
-                <li>Transparent starting prices</li>
-                <li>Walk-ins available</li>
-                <li>In-house labs and EKG available</li>
-              </ul>
-
-              <div class="btnRow">
-                <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
-                  Book Now
-                </a>
-                <a class="btn" href="#contact">Contact Us</a>
-              </div>
+              <p class="p">Affordable self-pay pricing for common visits, wellness checks, and women’s wellness care.</p>
             </div>
 
             <div class="card" style="padding: 16px;">
@@ -214,19 +198,21 @@ const SEO = {
                   </tr>
                 </thead>
                 <tbody>
-                  {SELF_PAY.map((x) => (
-                    <tr>
-                      <td>
-                        {x.name}
-                        <div class="small" style="margin-top: 6px;">
-                          {x.details.join(" • ")}
-                        </div>
-                      </td>
-                      <td style="white-space: nowrap;">{x.price}</td>
-                    </tr>
-                  ))}
+                  <tr>
+                    <td>Office Visits</td>
+                    <td>From $100</td>
+                  </tr>
+                  <tr>
+                    <td>Physical Exam</td>
+                    <td>From $180</td>
+                  </tr>
+                  <tr>
+                    <td>Women Wellness Visit</td>
+                    <td>From $150</td>
+                  </tr>
                 </tbody>
               </table>
+
               <div class="small" style="margin-top: 12px;">
                 Pricing shown as starting rates. Call to confirm based on visit needs.
               </div>
@@ -266,9 +252,7 @@ const SEO = {
 
               <div class="card" style="padding: 16px; background: rgba(255,255,255,0.04);">
                 <strong>Appointment</strong>
-                <div class="small" style="margin-top: 8px;">
-                  Book online anytime.
-                </div>
+                <div class="small" style="margin-top: 8px;">Book online anytime.</div>
                 <div class="btnRow">
                   <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
                     Book Appointment
@@ -295,16 +279,8 @@ const SEO = {
                   <div class="small">Comprehensive Medical & Research Center</div>
                 </div>
               </div>
-
               <div class="small" style="margin-top: 10px;">
                 Primary care, clinical research, and aesthetics in Plantation, Florida.
-              </div>
-
-              <div class="btnRow" style="margin-top: 14px;">
-                <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
-                  Book
-                </a>
-                <a class="btn" href={`tel:${SITE.phoneTel}`}>Call</a>
               </div>
             </div>
 
@@ -313,7 +289,7 @@ const SEO = {
               <div class="grid" style="margin-top: 10px;">
                 <a href="#services">Services</a>
                 <a href="#insurance">Insurance</a>
-                <a href="#pricing">Self-Pay</a>
+                <a href="#selfpay">Self-Pay</a>
                 <a href="#contact">Contact</a>
               </div>
 
