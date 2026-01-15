@@ -1,50 +1,396 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+const SITE = {
+  name: "Comprehensive Medical & Research Center (CMRC)",
+  city: "Plantation, FL",
+  phoneDisplay: "+1 (954) 368 3529",
+  phoneTel: "+19543683529",
+  addressLine1: "4101 NW 3rd Ct, Suite 11",
+  addressLine2: "Plantation, FL 33317",
+  bookingUrl:
+    "https://www.zocdoc.com/practice/comprehensive-medical-and-research-center-17467?isNewPatient=false&lock=true&referrerType=widget",
+  email: "admin@compmedical.net",
+};
+
+const INSURANCES = [
+  "Aetna",
+  "Cigna",
+  "Devoted",
+  "MedBlue",
+  "Partners Direct Health",
+  "United Healthcare",
+  "Clear Spring",
+  "Multiplan",
+  "Healthsmart Network",
+  "Solis Health Plans",
+  "Preferred Care Partners",
+  "Preferred Care Network",
+];
+
+const SERVICES = [
+  {
+    title: "Primary Care",
+    desc:
+      "Personalized primary care focused on prevention, chronic condition management, and everyday health needs.",
+  },
+  {
+    title: "Pharmaceutical Research",
+    desc:
+      "Clinical research and trials supporting the development of new medicines and better patient outcomes.",
+  },
+  {
+    title: "Aesthetics",
+    desc:
+      "Aesthetic treatments guided by trained professionals to help you choose what’s right for your goals.",
+  },
+];
+
+const HIGHLIGHTS = [
+  "In-house lab services",
+  "Walk-ins accepted",
+  "Electrocardiograms (EKG)",
+  "Accepting new patients",
+  "Self-pay accepted",
+];
+
+const SELF_PAY = [
+  {
+    name: "Office Visits",
+    price: "From $100",
+    details: ["Walk-ins", "Consultations", "Follow up"],
+  },
+  {
+    name: "Physical Exam",
+    price: "From $180",
+    details: ["Wellness check", "Annual visit", "Labs and EKG"],
+  },
+  {
+    name: "Women Wellness Visit",
+    price: "From $150",
+    details: ["Pap-smear", "Labs"],
+  },
+];
+
+const SEO = {
+  title: "CMRC | Primary Care, Clinical Research, Aesthetics in Plantation, FL",
+  description:
+    "Comprehensive Medical & Research Center (CMRC) in Plantation, FL. Primary care, clinical research, and aesthetics. Walk-ins welcome. Most insurance accepted. Book online.",
+};
 ---
 
-<!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{SEO.title}</title>
+    <meta name="description" content={SEO.description} />
+    <meta name="theme-color" content="#0b1220" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+
+    <meta property="og:title" content={SEO.title} />
+    <meta property="og:description" content={SEO.description} />
+    <meta property="og:type" content="website" />
+
+    <meta name="robots" content="index,follow" />
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <header class="nav">
+      <div class="container">
+        <div class="navInner">
+          <a class="brand" href="#top" aria-label="CMRC Home">
+            <div class="logo" aria-hidden="true">CM</div>
+            <div class="brandTitle">
+              <strong>CMRC</strong>
+              <span>Primary Care and Research</span>
+            </div>
+          </a>
+
+          <nav class="navLinks" aria-label="Primary">
+            <a href="#services">Services</a>
+            <a href="#insurance">Insurance</a>
+            <a href="#pricing">Self-Pay</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div class="navCta">
+            <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
+              Book Appointment
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main id="top">
+      <div class="container heroWrap">
+        <section class="card heroCard">
+          <div class="heroGrid">
+            <div>
+              <div class="badge">
+                <span aria-hidden="true">⭐</span>
+                <span>Over 100 5-star reviews</span>
+              </div>
+
+              <h1 class="h1">The best medical services in {SITE.city}</h1>
+
+              <p class="p">
+                Healthcare should be personalized, accessible, and easy to start.
+                CMRC provides primary care, clinical research, and aesthetics with a focus on quality and patient-centered care.
+              </p>
+
+              <div class="btnRow">
+                <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
+                  Book Appointment
+                </a>
+
+                <a class="btn" href="#services">Explore Services</a>
+
+                <a class="btn" href={`tel:${SITE.phoneTel}`}>
+                  Call {SITE.phoneDisplay}
+                </a>
+              </div>
+
+              <div class="kpis" aria-label="Highlights">
+                <div class="kpi">
+                  <strong>Walk-ins</strong>
+                  <span>Accepted</span>
+                </div>
+                <div class="kpi">
+                  <strong>In-house</strong>
+                  <span>Lab services</span>
+                </div>
+                <div class="kpi">
+                  <strong>EKG</strong>
+                  <span>Available</span>
+                </div>
+                <div class="kpi">
+                  <strong>New patients</strong>
+                  <span>Welcome</span>
+                </div>
+              </div>
+
+              <div class="pills" aria-label="Quick features">
+                {HIGHLIGHTS.map((h) => <span class="pill">{h}</span>)}
+              </div>
+            </div>
+
+            <div class="heroMedia" aria-label="Hero image placeholder"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SERVICES -->
+      <section id="services" class="section">
+        <div class="container">
+          <div class="split">
+            <div>
+              <h2 class="h2">Health care services</h2>
+              <p class="p">
+                CMRC supports your long-term health with preventive care, coordinated follow-ups, and accessible visits.
+              </p>
+
+              <div class="card" style="padding: 18px; margin-top: 16px;">
+                <p class="p">
+                  Mission: provide effective quality healthcare and the education needed to help patients maintain a long, healthy lifestyle.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid">
+              {SERVICES.map((s) => (
+                <article class="card" style="padding: 18px;">
+                  <h3 style="margin: 0 0 8px; letter-spacing: -0.01em;">{s.title}</h3>
+                  <p class="p">{s.desc}</p>
+                  <div class="btnRow" style="margin-top: 14px;">
+                    <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
+                      Book
+                    </a>
+                    <a class="btn" href="#contact">Questions?</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INSURANCE -->
+      <section id="insurance" class="section">
+        <div class="container">
+          <div class="card" style="padding: 20px;">
+            <h2 class="h2">Insurances we are accepting</h2>
+            <p class="p">Most major plans are accepted. Not sure about your plan? Call us and we’ll help.</p>
+
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 16px;">
+              {INSURANCES.map((i) => (
+                <div class="card" style="padding: 14px; background: rgba(255,255,255,0.04);">
+                  <strong>{i}</strong>
+                  <div class="small" style="margin-top: 6px;">Check eligibility when booking</div>
+                </div>
+              ))}
+            </div>
+
+            <div class="btnRow">
+              <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
+                Book with Insurance
+              </a>
+              <a class="btn" href="#pricing">See Self-Pay</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SELF PAY -->
+      <section id="pricing" class="section">
+        <div class="container">
+          <div class="split">
+            <div>
+              <h2 class="h2">No insurance? We can help</h2>
+              <p class="p">
+                Affordable self-pay pricing for common visits, wellness checks, and women’s wellness care.
+              </p>
+
+              <ul class="list" style="margin-top: 14px;">
+                <li>Transparent starting prices</li>
+                <li>Walk-ins available</li>
+                <li>In-house labs and EKG available</li>
+              </ul>
+
+              <div class="btnRow">
+                <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
+                  Book Now
+                </a>
+                <a class="btn" href="#contact">Contact Us</a>
+              </div>
+            </div>
+
+            <div class="card" style="padding: 16px;">
+              <table class="table" aria-label="Self-pay fees">
+                <thead>
+                  <tr>
+                    <th>Service</th>
+                    <th>Starting price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SELF_PAY.map((x) => (
+                    <tr>
+                      <td>
+                        {x.name}
+                        <div class="small" style="margin-top: 6px;">
+                          {x.details.join(" • ")}
+                        </div>
+                      </td>
+                      <td style="white-space: nowrap;">{x.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div class="small" style="margin-top: 12px;">
+                Pricing shown as starting rates. Call to confirm based on visit needs.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="card" style="padding: 20px;">
+            <h2 class="h2">Contact</h2>
+            <p class="p">Book online or call us. Walk-ins are welcome.</p>
+
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 16px;">
+              <div class="card" style="padding: 16px; background: rgba(255,255,255,0.04);">
+                <strong>Address</strong>
+                <div class="small" style="margin-top: 8px;">
+                  {SITE.addressLine1}<br />
+                  {SITE.addressLine2}
+                </div>
+              </div>
+
+              <div class="card" style="padding: 16px; background: rgba(255,255,255,0.04);">
+                <strong>Phone</strong>
+                <div class="small" style="margin-top: 8px;">
+                  <a href={`tel:${SITE.phoneTel}`}>{SITE.phoneDisplay}</a>
+                </div>
+
+                <div class="hr"></div>
+
+                <strong>Email</strong>
+                <div class="small" style="margin-top: 8px;">
+                  <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+                </div>
+              </div>
+
+              <div class="card" style="padding: 16px; background: rgba(255,255,255,0.04);">
+                <strong>Appointment</strong>
+                <div class="small" style="margin-top: 8px;">
+                  Book online anytime.
+                </div>
+                <div class="btnRow">
+                  <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
+                    Book Appointment
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="small" style="margin-top: 12px;">
+              Note: Email and website hosting are independent. Your Office 365 email stays unchanged as long as MX and related DNS records remain DNS-only.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="container">
+          <div class="footerGrid">
+            <div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="logo" aria-hidden="true">CM</div>
+                <div>
+                  <strong>CMRC</strong>
+                  <div class="small">Comprehensive Medical & Research Center</div>
+                </div>
+              </div>
+
+              <div class="small" style="margin-top: 10px;">
+                Primary care, clinical research, and aesthetics in Plantation, Florida.
+              </div>
+
+              <div class="btnRow" style="margin-top: 14px;">
+                <a class="btn btnPrimary" href={SITE.bookingUrl} target="_blank" rel="noopener">
+                  Book
+                </a>
+                <a class="btn" href={`tel:${SITE.phoneTel}`}>Call</a>
+              </div>
+            </div>
+
+            <div>
+              <strong>Quick Links</strong>
+              <div class="grid" style="margin-top: 10px;">
+                <a href="#services">Services</a>
+                <a href="#insurance">Insurance</a>
+                <a href="#pricing">Self-Pay</a>
+                <a href="#contact">Contact</a>
+              </div>
+
+              <div class="hr"></div>
+
+              <div class="small">
+                © {new Date().getFullYear()} CMRC. All rights reserved.
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
 </html>
