@@ -9,43 +9,47 @@
     const res = await fetch(url, { cache: 'no-store' });
     const data = await res.json();
 
-    const plansHtml = (data.plans || [])
-      .map(
-        (p) => `
-        <div class="box">
-          <h3>${escapeHtml(p.name)} <span style="font-weight:400;color:#777;">${escapeHtml(p.price)}</span></h3>
-          <ul>
-            ${(p.bullets || []).map((b) => `<li>${escapeHtml(b)}</li>`).join('')}
-          </ul>
-        </div>`
-      )
-      .join('');
+    const headline = escapeHtml(data.headline || (isES ? 'Planes de Direct Primary Care' : 'Direct Primary Care Plans'));
+    const subheadline = escapeHtml(data.subheadline || (isES ? 'Membresías claras, simples y accesibles.' : 'Clear, simple membership pricing with real access.'));
+
+    const plans = (data.plans || []).map((p) => {
+      const name = escapeHtml(p.name || 'Plan');
+      const price = escapeHtml(p.price || '');
+      const bullets = (p.bullets || []).map((b) => `<li><span class="cmrc-check">✓</span><span>${escapeHtml(b)}</span></li>`).join('');
+
+      return `
+        <article class="cmrc-plan">
+          <div class="cmrc-planTop">
+            <div class="cmrc-tag"><span class="cmrc-dot"></span>${name}</div>
+            <div class="cmrc-price">${price}</div>
+          </div>
+          <ul class="cmrc-ul">${bullets}</ul>
+        </article>
+      `;
+    }).join('');
+
+    const ctaHref = data.cta_href || '#contact';
+    const ctaLabel = escapeHtml(data.cta_label || (isES ? 'Conocer más' : 'Learn more'));
 
     mount.innerHTML = `
-      <header class="major">
-        <h2>${escapeHtml(data.headline || '')}</h2>
-        <p>${escapeHtml(data.subheadline || '')}</p>
-      </header>
-      <div class="row gtr-200">
-        ${(data.plans || []).map(() => '<div class="col-4 col-12-narrower"></div>').join('')}
+      <div class="cmrc-dpc">
+        <div class="cmrc-secHead">
+          <h2>${headline}</h2>
+          <p>${subheadline}</p>
+        </div>
+
+        <div class="cmrc-plans">${plans}</div>
+
+        <div class="cmrc-cta">
+          <a class="button cmrc-primary" href="${escapeAttr(ctaHref)}">${ctaLabel}</a>
+        </div>
+
+        <div class="cmrc-micro">
+          ${escapeHtml(data.disclaimer || (isES
+            ? 'Las membresías no reemplazan el seguro. Recomendamos mantener cobertura para emergencias y especialistas.'
+            : 'Memberships do not replace insurance. Keep coverage for emergency and specialty care.'))}
+        </div>
       </div>
-      <div class="row gtr-200" style="margin-top:0;">
-        ${(data.plans || [])
-          .map((p) => `
-          <section class="col-4 col-12-narrower">
-            <div class="box highlight">
-              <h3>${escapeHtml(p.name)}</h3>
-              <p style="margin-top:-6px;color:#0a6; font-weight:700;">${escapeHtml(p.price)}</p>
-              <ul style="text-align:left; margin: 0 auto; max-width: 520px;">
-                ${(p.bullets || []).map((b) => `<li>${escapeHtml(b)}</li>`).join('')}
-              </ul>
-            </div>
-          </section>`)
-          .join('')}
-      </div>
-      <ul class="actions" style="justify-content:center; margin-top: 24px;">
-        <li><a href="${data.cta_href || '#contact'}" class="button">${escapeHtml(data.cta_label || 'Learn more')}</a></li>
-      </ul>
     `;
   } catch (e) {
     mount.innerHTML = '';
@@ -58,5 +62,9 @@
       .replaceAll('>', '&gt;')
       .replaceAll('"', '&quot;')
       .replaceAll("'", '&#039;');
+  }
+
+  function escapeAttr(str) {
+    return escapeHtml(str).replaceAll('`', '');
   }
 })();
