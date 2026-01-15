@@ -1,0 +1,24 @@
+{
+  "updated_at": "2026-01-15",
+  "headline": "Atencion Primaria Directa (DPC)",
+  "subheadline": "Membresia de atencion primaria con precios claros.",
+  "cta_label": "Conocer DPC",
+  "cta_href": "#contact",
+  "plans": [
+    {
+      "name": "Individual",
+      "price": "$XX/mes",
+      "bullets": ["Visitas ilimitadas o extendidas", "Citas el mismo dia o al dia siguiente cuando sea posible", "Mensajeria directa para preguntas"]
+    },
+    {
+      "name": "Parejas",
+      "price": "$XX/mes",
+      "bullets": ["Membresia para el hogar", "Enfoque preventivo", "Planificacion anual de bienestar"]
+    },
+    {
+      "name": "Empresas",
+      "price": "Llamar",
+      "bullets": ["Opciones para empleados", "Costos predecibles", "Paquetes personalizados"]
+    }
+  ]
+}

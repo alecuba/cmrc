@@ -1,0 +1,24 @@
+{
+  "updated_at": "2026-01-15",
+  "headline": "Direct Primary Care (DPC)",
+  "subheadline": "Simple membership primary care with transparent pricing.",
+  "cta_label": "Learn about DPC",
+  "cta_href": "#contact",
+  "plans": [
+    {
+      "name": "Individual",
+      "price": "$XX/mo",
+      "bullets": ["Unlimited or extended visits", "Same/next-day availability when possible", "Direct messaging for questions"]
+    },
+    {
+      "name": "Couples",
+      "price": "$XX/mo",
+      "bullets": ["Shared household membership", "Preventive care focus", "Annual wellness planning"]
+    },
+    {
+      "name": "Employer",
+      "price": "Call",
+      "bullets": ["Employee membership options", "Predictable healthcare costs", "Custom packages available"]
+    }
+  ]
+}
